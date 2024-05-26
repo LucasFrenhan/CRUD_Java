@@ -26,49 +26,39 @@
         }
         .container {
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
         .content {
             display: none;
+            text-align: center;
+            
         }
         .content.active {
             display: block; 
         }
+        .pInicial{
+            display: flex;
+            align-content: center;
+        }
+        
     </style>
 </head>
 <body>    
 <div class="nav">
-    <a href="#inicio" onclick="mostrarConteudo('inicio')">Início</a>    
-    <a href="#cadastrar" onclick="mostrarConteudo('cadastrar')">Cadastrar Produto</a>
-    <a href="#listar"  onclick="mostrarConteudo('listar')">Listar Produtos</a>
+    <a href="#" onclick="mostrarConteudo('inicio')">Início</a>    
+    <a href="/cadastrar" onclick="mostrarConteudo('cadastrar')">Cadastrar Produto</a>
+    <a href="/listar"  onclick="mostrarConteudo('listar')">Listar Produtos</a>
 </div>
 <div class="container">
-    <div id="inicio" class="content active">
+    <div id="inicio" class="content active pInicial">
         <h1>Bem-vindo!</h1>
         <p>Esta é a página inicial.</p>
-    </div>
-    <div id="cadastrar" class="content">
-        <h1>Cadastrar Produto</h1>
-        <!-- <form action="#cadastrar" th:action="@{/cadastrar}" method=post th:object="${produto}">
-            Nome: <input type="text" th:field="*{nome}"><br>
-            Descrição: <input type="text" th:field="*{descricao}"><br>
-            Preço: <input type="text" th:field="*{preco}">
-            <input type="submit" value="Cadastrar">
-        </form>        
-    </div> -->
-    <div id="listar" class="content">
-        <h1>Listar Produtos</h1>
-        <p>Aqui você verá a lista de produtos cadastrados.</p>        
-    </div>
-
-    <script>
-        function mostrarConteudo(id) {
-            var conteudos = document.querySelectorAll('.content');
-            conteudos.forEach(function(conteudo) {
-                conteudo.classList.remove('active');
-            });
-            document.getElementById(id).classList.add('active');
-        }
-    </script>
+        <p>Nas opções do menu você consegue navegar pelo sistema.</p>
+    </div>   
 </div>
+
 </body>
 </html>

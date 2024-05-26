@@ -26,9 +26,14 @@
         }
         .container {
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
         .content {
-            display: none;
+            display: flex;
+            text-align: center;
         }
         .content.active {
             display: block; 
@@ -37,28 +42,20 @@
 </head>
 <body>    
 <div class="nav">
-    <a href="/src/main/resources/templates/index.html" onclick="mostrarConteudo('inicio')">Início</a>    
-    <a href="#cadastrar" onclick="mostrarConteudo('cadastrar')">Cadastrar Produto</a>
-    <a href="#listar"  onclick="mostrarConteudo('listar')">Listar Produtos</a>
-</div>
-<div id="cadastrar" class="content">
-    <h1>Cadastrar Produto</h1>
-    <form action="#cadastrar" th:action="@{/cadastrar}" method=post th:object="${produto}">
-        Nome: <input type="text" th:field="*{nome}"><br>
-        Descrição: <input type="text" th:field="*{descricao}"><br>
-        Preço: <input type="text" th:field="*{preco}">
-        <input type="submit" value="Cadastrar">
-    </form>        
-</div>
-<script>
-    function mostrarConteudo(id) {
-        var conteudos = document.querySelectorAll('.content');
-        conteudos.forEach(function(conteudo) {
-            conteudo.classList.remove('active');
-        });
-        document.getElementById(id).classList.add('active');
-    }
-</script>
-</div>
+    <a href="/" onclick="mostrarConteudo('inicio')">Início</a>    
+    <a href="/cadastrar" onclick="mostrarConteudo('cadastrar')">Cadastrar Produto</a>
+    <a href="/listar"  onclick="mostrarConteudo('listar')">Listar Produtos</a>
+</div> 
+<div class="container">    
+    <div>
+        <h1>Cadastrar Produto</h1><br>
+        <form action="/cadastrar" th:action="@{/cadastrar}" method="post" th:object="${produto}">
+            Nome: <input type="text" th:field="*{nome}"><br>
+            Descrição: <input type="text" th:field="*{descricao}"><br>
+            Preço: <input type="text" th:field="*{preco}">
+            <input type="submit" value="Cadastrar">
+        </form>
+    </div>    
+</div>    
 </body>
 </html>
