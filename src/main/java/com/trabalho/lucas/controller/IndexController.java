@@ -16,7 +16,7 @@ import com.trabalho.lucas.model.Produto;
 import com.trabalho.lucas.model.ProdutoService;
 
 @Controller
-@ComponentScan("com.aulabd.sitebd.model")
+@ComponentScan("com.trabalho.lucas.model")
 public class IndexController {
     
     @Autowired
