@@ -1,24 +1,13 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-alpine
-
-# Set the working directory in the container
+# Etapa de build
+FROM maven:3.8.4-openjdk-17-slim AS build
 WORKDIR /app
-
-# Copy the Maven Wrapper and make it executable
-COPY mvnw .
-COPY .mvn .mvn
-
-# Copy the Maven project files
 COPY pom.xml .
-
-# Copy the source code
 COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Make the Maven Wrapper executable
-RUN chmod +x mvnw
-
-# Package the application
-RUN ./mvnw clean package
-
-# Run the application
-CMD ["java", "-jar", "target/your-app-name.jar"]
+# Etapa de execução
+FROM openjdk:17-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
