@@ -20,4 +20,16 @@ public class ProdutoService {
 		return pDao.listarProdutos();
 	}
 
+    public List<Map<String, Object>> obterProduto(int id){
+      return pDao.obterProduto(id);
+    }
+
+    public void atualizarProduto(int id, Produto produto){
+      pDao.atualizarProduto(id, produto);
+    }
+
+    public void apagarProduto(int id){
+      pDao.apagarProduto(id);
+    }
+
 }

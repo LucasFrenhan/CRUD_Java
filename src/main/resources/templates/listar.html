@@ -42,9 +42,9 @@
 </head>
 <body>
     <div class="nav">
-        <a href="/" onclick="mostrarConteudo('inicio')">Início</a>    
-        <a href="/cadastrar" onclick="mostrarConteudo('cadastrar')">Cadastrar Produto</a>
-        <a href="/listar"  onclick="mostrarConteudo('listar')">Listar Produtos</a>
+        <a href="/">Início</a>    
+        <a href="/cadastrar">Cadastrar Produto</a>
+        <a href="/listar">Listar Produtos</a>
     </div>
     <div class="container">
         <table>
@@ -54,14 +54,24 @@
                     <td><b>NOME</b> </td>
                     <td><b>DESCRIÇÃO</b> </td>
                     <td><b>PREÇO</b> </td>
+                    <td></td>
+				    <td></td>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="cli : ${lista}">
-                    <td th:text="${cli.id}"></td>
-                    <td th:text="${cli.nome}"></td>
-                    <td th:text="${cli.descricao}"></td>
-                    <td th:text="${cli.preco}"></td>
+                <tr th:each="produto: ${lista}">
+                    <td th:text="${produto.id}"></td>
+                    <td th:text="${produto.nome}"></td>
+                    <td th:text="${produto.descricao}"></td>
+                    <td th:text="${produto.preco}"></td>
+                    <td> 
+                        <a th:href="@{'atualizar/' + ${produto.id}}"> EDITAR </a> 
+                    </td>				
+                    <td>
+                        <form th:action="@{'deletar/' + ${produto.id}}" method="post">
+                            <input type="submit" value="Apagar"> 
+                        </form> 
+                    </td>
                    </tr>
              </tbody>
         </table>

@@ -35,14 +35,34 @@ public class ProdutoDAO {
 	}
 
     public List<Map<String, Object>> listarProdutos() {
-    	String sql = "SELECT * FROM produto";
+    	String sql = "SELECT * FROM produto ORDER BY id";
     	return jdbc.queryForList(sql);
     }
 
-    // public Produto listarProduto(int id){
-    //     String sql = "SELECT * FROM produto WHERE id = " + id;
-    //     Produto produto;
-    //     return jdbc.query(sql);
-    // }
+    public List<Map<String, Object>> obterProduto(int id){
+        String sql = "SELECT * FROM produto WHERE id = ?";
+		Object[] obj = new Object[1];
+		obj[0] = id;
+        return jdbc.queryForList(sql, obj);
+    }
+
+	public void atualizarProduto(int id, Produto produto){
+		String sql = "UPDATE produto SET nome = ?," + 
+					 " descricao = ?," + 
+					 " preco = ? WHERE id = ?";
+		Object[] obj = new Object[4];
+		obj[0] = produto.getNome();
+		obj[1] = produto.getDescricao();
+		obj[2] = produto.getPreco();
+		obj[3] = id;
+		jdbc.update(sql, obj);
+	}
+
+	public void apagarProduto(int id){
+		String sql = "DELETE FROM produto WHERE id = ?";
+		Object[] obj = new Object[1];
+		obj[0] = id;
+		jdbc.update(sql, obj);
+	}
 
 }
