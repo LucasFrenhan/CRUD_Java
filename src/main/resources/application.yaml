@@ -1,21 +1,28 @@
 server:
-  port: 8080
-
+    port: 5432
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: admin
-    driver-class-name: org.postgresql.Driver
-    initialize: true
+    datasource:
+        url: jdbc:postgresql://dpg-cpajktm3e1ms739qrr4g-a.oregon-postgres.render.com/postgresql_java_crud?user=postgresql_java_crud_user&password=d4OCKCPnyPbuTvzo5GtzE9QYhthTyh3m
+        driver-class-name: org.postgresql.Driver
+        initialize: true
 
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-      generate-ddl: true
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+            generate-ddl: true
+        show-sql: true
+        properties:
+            hibernate:
+                format_sql: true
 
-  sql:
-    init:
-      schema-locations: classpath:/schema-postgresql.sql
-      mode: always
-      platform: postgres
+    sql:
+        init:
+            schema-locations: classpath:schema-postgresql.sql
+            mode: always
+            platform: postgres
+
+logging:
+    level:
+        root: INFO
+        org.springframework: DEBUG
+        org.hibernate: DEBUG
