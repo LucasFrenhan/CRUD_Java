@@ -1,5 +1,5 @@
 server:
-    port: 5432
+    port: 8080
 spring:
     datasource:
         url: jdbc:postgresql://dpg-cpajktm3e1ms739qrr4g-a.oregon-postgres.render.com/postgresql_java_crud?user=postgresql_java_crud_user&password=d4OCKCPnyPbuTvzo5GtzE9QYhthTyh3m
