@@ -21,4 +21,4 @@ RUN chmod +x mvnw
 RUN ./mvnw clean package
 
 # Run the application
-CMD ["java", "-jar", "target/your-app-name.jar"]
+CMD ["java", "-jar", "target/lucas.jar"]
