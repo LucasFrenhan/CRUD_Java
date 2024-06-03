@@ -1,18 +1,13 @@
-FROM openjdk:17-jdk-alpine
-
+# Etapa de build
+FROM maven:3.8.4-openjdk-17-slim AS build
 WORKDIR /app
-
 COPY pom.xml .
-
 COPY src ./src
+RUN mvn clean package -DskipTests
 
-COPY mvnw .
-
-COPY .mvn .mvn
-
-RUN chmod 777 mvnw
-
-RUN ./mvnw package
-
-CMD ["java", "-jar", "target/lucas.war"]
-
+# Etapa de execução
+FROM openjdk:17-alpine
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
